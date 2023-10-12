@@ -55,6 +55,7 @@
                 <configuration>
                     <archive>
                         <index>true</index>
+                        <!--在MANIFEST.MF文件中写信息-->
                         <manifestEntries>
                             <Build-Timestamp>${maven.build.timestamp}</Build-Timestamp>
                             <Build-Os>${os.name}</Build-Os>

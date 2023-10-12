@@ -6,7 +6,7 @@ ${AnsiColor.CYAN}${AnsiStyle.FAINT}
 _|"""""|_|"""""|_|"""""|_|"""""|_|"""""|_|     |_|"""""|_|"""""|_|"""""|
 "`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'
 creator: ${AnsiColor.BRIGHT_MAGENTA} qingchen ${AnsiColor.CYAN}
-name: ${AnsiColor.BRIGHT_MAGENTA} ${application.title} @project.name@${AnsiColor.CYAN}
+name: ${AnsiColor.BRIGHT_MAGENTA} ${application.title} @project.name@ ${AnsiColor.CYAN}
 版本 Version: ${AnsiColor.BRIGHT_MAGENTA}${application.version} @project.version@ ${AnsiColor.CYAN}
 格式化 版本 Version: ${AnsiColor.BRIGHT_MAGENTA}${application.formatted-version} @project.version@${AnsiColor.CYAN}
 SpringBoot Version: ${AnsiColor.BRIGHT_MAGENTA}${spring-boot.version}${AnsiColor.CYAN}

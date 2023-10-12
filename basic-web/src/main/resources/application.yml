@@ -1,5 +1,11 @@
 server:
   port: 9091 #配置端口
+  servlet:
+    context-path: /basic-web
+    encoding:
+      charset: utf-8
+      force: true
+      enabled: true
 spring:
   application:
     name: basic-web
@@ -24,3 +30,23 @@ spring:
     username: root
     password: 177214
     url: jdbc:mysql://liqingchen.top:3306/basic_web?serverTimezone=GMT%2B8&characterEncoding=utf8&useSSL=true&remarks=true&useInformationSchema=true
+  #flyway配置
+  flyway:
+    enabled: true
+    encoding: UTF-8
+    #locations: classpath:/db/db
+    #是否允许无序的迁移
+    out-of-order: false
+    #当初始化好连接时要执行的SQL
+    #init-sqls:
+    #使用的元数据表名-->版本记录
+    table: schema_version_basic_web
+    #  开启自动创建flyway元数据表标识 默认: false
+    baseline-on-migrate: true
+    placeholder-replacement: true
+    # 配置占位符(可自定义多个占位符)
+    # 自定义占位符: myParam
+    # 自定义参数值: value
+    placeholders:
+      tablePrefix: qingchen_basic_web
+

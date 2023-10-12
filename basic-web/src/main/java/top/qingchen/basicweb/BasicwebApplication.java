@@ -1,9 +1,11 @@
 package top.qingchen.basicweb;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
+@MapperScan("top.qingchen.basicweb.mapper")//MyBatisPlus 包扫描
 public class BasicwebApplication {
 
     public static void main(String[] args) {

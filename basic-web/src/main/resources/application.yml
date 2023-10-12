@@ -1,0 +1,20 @@
+server:
+  port: 9091 #配置端口
+spring:
+  application:
+    name: basic-web
+  main:
+    banner-mode: console                       # 控制Banner打印 OFF(禁止打印Banner)、CONSOLE（打印Banner至控制台）、LOG（打印Banner至日志文件）
+    show-banner: on                            # 同上已经过时
+    lazy-initialization: false                 # 懒加载
+  banner:
+#    image:
+#      location: banner/banner.jpg              # 设置banner图片位置 默认classpath:banner.gif
+#      bitdepth: 4                              # 配置banner图片的ANSI颜色的位深度，默认值是4 支持的值是4（16色）或8（256色）
+#      invert: false                            # 配置暗终端主题的图片是否应该倒置，默认值是false
+#      margin: 2                                # 配置Banner图片左手图像边距，单位为字符。默认值为2
+#      pixelmode: block                         # 配置渲染图像时要使用的像素模式，默认值为TEXT。可选择模式为TEXT和BLOCK
+#      width: 76                                # 配置Banner图像的宽度，单位为chars，默认值为76
+#      height: 52                               # 配置banner图像的字符高度（默认基于图像高度）
+    location: banner/banner.txt                # 设置banner.txt位置 默认位置classpath:banner.txt
+    charset: UTF-8                             # 配置banner文件的字符集编码，默认值是UTF-8

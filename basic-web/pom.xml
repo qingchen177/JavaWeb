@@ -5,8 +5,8 @@
     <groupId>top.qingchen</groupId>
     <artifactId>basicweb</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>basicweb</name>
-    <description>basicweb</description>
+    <name>basic-web</name>
+    <description>basic-web</description>
     <properties>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -51,6 +51,22 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <index>true</index>
+                        <manifestEntries>
+                            <Build-Timestamp>${maven.build.timestamp}</Build-Timestamp>
+                            <Build-Os>${os.name}</Build-Os>
+                            <Implementation-Title>qingchen-basic-web</Implementation-Title>
+                            <Implementation-Version>Version-0.0.1</Implementation-Version>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
                 <configuration>
@@ -65,7 +81,6 @@
                 <version>${spring-boot.version}</version>
                 <configuration>
                     <mainClass>top.qingchen.basicweb.BasicwebApplication</mainClass>
-                    <skip>true</skip>
                 </configuration>
                 <executions>
                     <execution>
@@ -77,6 +92,13 @@
                 </executions>
             </plugin>
         </plugins>
+        <resources>
+            <!--获取project version所用到的配置-->
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
     </build>
 
 </project>

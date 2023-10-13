@@ -43,16 +43,15 @@ public class SessionController {
         long creationTime = session.getCreationTime();
         System.out.println("creationTime = " + creationTime);
         System.out.println("-------------------------------------");
-
         return Result.success(true);
     }
 
     @GetMapping("del")
     public Result<Boolean> delsession(HttpServletResponse response, HttpServletRequest request) {
         HttpSession session = request.getSession(false);
-       if (session != null){
-           session.invalidate();
-       }
+        if (session != null) {
+            session.invalidate();
+        }
         return Result.success(true);
     }
 }

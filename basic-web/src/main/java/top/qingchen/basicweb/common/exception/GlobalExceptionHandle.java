@@ -3,6 +3,7 @@ package top.qingchen.basicweb.common.exception;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import top.qingchen.basicweb.common.constant.GlobalConstant;
 import top.qingchen.basicweb.common.pojo.Result;
 
 /**
@@ -22,7 +23,7 @@ public class GlobalExceptionHandle {
     @ExceptionHandler(Exception.class)
     public Result<String> ex(Exception ex) {
         ex.printStackTrace();// 打印堆栈信息
-        log.error("发生异常：" + ex.getMessage());
-        return Result.error("对不起，操作失败");
+        log.error(GlobalConstant.LOG_PREFIX + "发生异常：" + ex.getMessage());
+        return Result.error("操作失败，请联系管理员查看异常信息！");
     }
 }

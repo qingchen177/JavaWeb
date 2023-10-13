@@ -3,9 +3,15 @@ package top.qingchen.basicweb;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 
+/**
+ * @author qingchen
+ */
 @SpringBootApplication
-@MapperScan("top.qingchen.basicweb.mapper")//MyBatisPlus 包扫描
+//MyBatisPlus 包扫描
+@MapperScan("top.qingchen.basicweb.mapper")
+@ServletComponentScan
 public class BasicwebApplication {
 
     public static void main(String[] args) {

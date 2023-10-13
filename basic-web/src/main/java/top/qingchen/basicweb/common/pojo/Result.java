@@ -19,4 +19,12 @@ public class Result<T> {
     String result;
     Integer code;
     T data;
+
+    public static <T> Result<T> success(T data) {
+        return new Result<T>().setResult("成功").setCode(200).setData(data);
+    }
+
+    public static <T> Result<T> error(T s) {
+        return new Result<T>().setResult("失败").setCode(500).setData(s);
+    }
 }

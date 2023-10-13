@@ -15,6 +15,5 @@ public class CommandLineProcessor implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
         System.out.println("CommandLineProcessor is triggered. hello 程序启动后执行代码！！！ ");
-        System.out.println("1+1=" + Math.random());
     }
 }

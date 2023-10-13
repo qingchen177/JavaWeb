@@ -1,4 +1,4 @@
-package top.qingchen.basicweb.property;
+package top.qingchen.basicweb.common.property;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

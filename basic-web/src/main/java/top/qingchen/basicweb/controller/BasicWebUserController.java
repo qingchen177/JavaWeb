@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import top.qingchen.basicweb.aop.BasicWebLog;
 import top.qingchen.basicweb.common.pojo.Result;
 import top.qingchen.basicweb.common.util.JwtUtil;
 import top.qingchen.basicweb.entity.BasicWebUser;
@@ -30,6 +31,7 @@ public class BasicWebUserController {
     @Autowired
     private IBasicWebUserService service;
 
+    @BasicWebLog
     @PostMapping("/login")
     public Result<String> login(@RequestBody BasicWebUser user){
         Wrapper<BasicWebUser> wrapper = new LambdaQueryWrapper<BasicWebUser>().eq(BasicWebUser::getName,user.getName()).eq(BasicWebUser::getPassword,user.getPassword());

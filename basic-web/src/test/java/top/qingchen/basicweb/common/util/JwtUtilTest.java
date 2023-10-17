@@ -1,5 +1,6 @@
 package top.qingchen.basicweb.common.util;
 
+import io.jsonwebtoken.Claims;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
@@ -21,6 +22,8 @@ public class JwtUtilTest {
 
     @Test
     public void testParseJWT() throws Exception {
-        JwtUtil.parseJWT("eyJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoicGFzc3dvcmQiLCJleHAiOjE2OTcxODY2MzV9.ILqCYq0VUjnpWRKYm3jxpvJgbFtHgRgZm0K_RtHCDRQ");
+        String token ="eyJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoiYWRtaW5zdHJhdG9yIiwicGFzc3dvcmQiOiIxMjM0NTYiLCJpZCI6bnVsbCwiZXhwIjoxNjk3NTMxMDE1LCJhY2NvdW50IjpudWxsfQ.Fkqkk2V7wK008OryqrVOVCyFJPRO8jsuJ0jGRuSqWQs";
+        Claims claims = JwtUtil.parseJWT(token);
+        System.out.println("claims = " + claims);
     }
 }

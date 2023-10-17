@@ -43,9 +43,8 @@ public class JwtUtil {
 
     }
 
-    public static void parseJWT(String token) {
-        Claims claims = Jwts.parser().setSigningKey(SIGN).parseClaimsJws(token).getBody();
-        System.out.println("claims = " + claims);
+    public static Claims parseJWT(String token) throws Exception{
+        return Jwts.parser().setSigningKey(SIGN).parseClaimsJws(token).getBody();
     }
 
 }

@@ -1,9 +1,7 @@
 package top.qingchen.basicweb.filter;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import top.qingchen.basicweb.common.constant.GlobalConstant;
-import top.qingchen.basicweb.common.exception.GlobalExceptionHandle;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -12,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
 
 /**
@@ -29,8 +28,6 @@ public class GlobalFilter implements Filter {
      */
     private List<String> sensitiveWords = new ArrayList<>();
 
-    @Autowired
-    private GlobalExceptionHandle globalExceptionHandle;
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -38,15 +35,15 @@ public class GlobalFilter implements Filter {
 
         String sensitiveWord = filterConfig.getInitParameter("sensitiveWord");
         sensitiveWords.add(sensitiveWord);
-//        System.out.println("-----------获取Filter全部key:value------------");
-//        //得到所有配置参数的名字
-//        Enumeration<String> names = filterConfig.getInitParameterNames();
-//        while (names.hasMoreElements()) {
-//            //得到每一个名字
-//            String name = names.nextElement();
-//            System.out.println(name + " = " + filterConfig.getInitParameter(name));
-//        }
-//        System.out.println("-----------end.....------------");
+        log.info(GlobalConstant.LOG_PREFIX + "-----------获取Filter全部key:value------------");
+        //得到所有配置参数的名字
+        Enumeration<String> names = filterConfig.getInitParameterNames();
+        while (names.hasMoreElements()) {
+            //得到每一个名字
+            String name = names.nextElement();
+            System.out.println(name + " = " + filterConfig.getInitParameter(name));
+        }
+        log.info(GlobalConstant.LOG_PREFIX + "-----------end.....------------");
 
         Filter.super.init(filterConfig);
     }

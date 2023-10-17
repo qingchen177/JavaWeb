@@ -19,4 +19,25 @@ CREATE TABLE ${tablePrefix}_user
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8 COMMENT ='用户表';
 
-INSERT INTO `basic_web`.`${tablePrefix}_user`(`id`, `account`, `name`, `email`, `mobile`, `wechat`, `sex`, `status`, `avatar`, `password`, `create_user`, `create_time`, `update_user`, `update_time`) VALUES ('-1', 'adminstrator', 'adminstrator', 'qingchen0607@qq.com', '151xxxx3710', '151xxxx3710', 'N', 1, '', '123456', '-1', '2023-10-12 17:07:11', '-1', '2023-10-12 17:07:14');
+INSERT INTO `basic_web`.`${tablePrefix}_user`(`id`, `account`, `name`, `email`, `mobile`, `wechat`, `sex`, `status`,
+                                              `avatar`, `password`, `create_user`, `create_time`, `update_user`,
+                                              `update_time`)
+VALUES ('-1', 'adminstrator', 'adminstrator', 'qingchen0607@qq.com', '151xxxx3710', '151xxxx3710', 'N', 1, '', '123456',
+        '-1', '2023-10-12 17:07:11', '-1', '2023-10-12 17:07:14');
+
+DROP TABLE IF EXISTS ${tablePrefix}_audit_record;
+CREATE TABLE ${tablePrefix}_audit_record
+(
+    `id`                         varchar(32) NOT NULL COMMENT 'ID',
+    `operator`                   varchar(64) NOT NULL COMMENT '操作人',
+    `operation`                  varchar(64) NOT NULL COMMENT '操作',
+    `operation_time`             datetime    NOT NULL COMMENT '操作时间',
+    `operation_time_consumption` int(8) COMMENT '操作耗时',
+    `operation_context`          varchar(1024) DEFAULT NULL COMMENT '操作内容',
+    `create_user`                varchar(32)   DEFAULT NULL COMMENT '创建人id',
+    `create_time`                datetime      DEFAULT NULL COMMENT '创建时间',
+    `update_user`                varchar(32)   DEFAULT NULL COMMENT '更新人id',
+    `update_time`                datetime      DEFAULT NULL COMMENT '更新时间',
+    PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8 COMMENT ='审计记录表';

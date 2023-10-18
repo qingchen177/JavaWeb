@@ -3,6 +3,7 @@ package top.qingchen.basicweb.controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import top.qingchen.basicweb.aop.BasicWebLog;
 import top.qingchen.basicweb.common.pojo.Result;
 
 import javax.servlet.ServletContext;
@@ -19,12 +20,14 @@ import java.util.Enumeration;
 @RequestMapping("/session")
 public class SessionController {
 
+    @BasicWebLog
     @GetMapping("set")
     public Result<Boolean> setsession(HttpSession session) {
         session.setAttribute("name", "qingchen");
         return Result.success(true);
     }
 
+    @BasicWebLog
     @GetMapping("get")
     public Result<Boolean> getsession(HttpServletRequest request) {
         HttpSession session = request.getSession();

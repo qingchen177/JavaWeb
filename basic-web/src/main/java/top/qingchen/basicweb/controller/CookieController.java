@@ -3,6 +3,7 @@ package top.qingchen.basicweb.controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import top.qingchen.basicweb.aop.BasicWebLog;
 import top.qingchen.basicweb.common.pojo.Result;
 
 import javax.servlet.http.Cookie;
@@ -17,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping("/cookie")
 public class CookieController {
 
+    @BasicWebLog
     @GetMapping("set")
     public Result<Boolean> setCookie(HttpServletResponse response) {
         Cookie cookie = new Cookie("name", "qingchen");
@@ -24,6 +26,7 @@ public class CookieController {
         return Result.success(true);
     }
 
+    @BasicWebLog
     @GetMapping("get")
     public Result<Boolean> getCookie(HttpServletRequest request) {
         Cookie[] cookies = request.getCookies();

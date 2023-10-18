@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * </p>
  *
  * @author qingchen
- * @since 2023-10-17
+ * @since 2023-10-18
  */
 public interface AuditRecordMapper extends BaseMapper<AuditRecord> {
 

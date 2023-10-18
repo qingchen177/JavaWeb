@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import top.qingchen.basicweb.aop.BasicWebLog;
+import top.qingchen.basicweb.common.constant.myenum.AuditRecordOperation;
 import top.qingchen.basicweb.common.pojo.Result;
 import top.qingchen.basicweb.common.util.JwtUtil;
 import top.qingchen.basicweb.entity.BasicWebUser;
@@ -31,25 +32,26 @@ public class BasicWebUserController {
     @Autowired
     private IBasicWebUserService service;
 
-    @BasicWebLog
+    @BasicWebLog(description = "用户登陆", operationType = AuditRecordOperation.LOGIN)
     @PostMapping("/login")
-    public Result<String> login(@RequestBody BasicWebUser user){
-        Wrapper<BasicWebUser> wrapper = new LambdaQueryWrapper<BasicWebUser>().eq(BasicWebUser::getName,user.getName()).eq(BasicWebUser::getPassword,user.getPassword());
+    public Result<String> login(@RequestBody BasicWebUser user) {
+        Wrapper<BasicWebUser> wrapper = new LambdaQueryWrapper<BasicWebUser>().eq(BasicWebUser::getName, user.getName()).eq(BasicWebUser::getPassword, user.getPassword());
         BasicWebUser one = service.getOne(wrapper);
-        if (one != null){
+        if (one != null) {
             //登录成功返回token
-            Map<String,Object> claims = new HashMap<String,Object>(4);
-            claims.put("name", user.getName());
-            claims.put("password", user.getPassword());
-            claims.put("id",user.getId());
-            claims.put("account",user.getAccount());
+            Map<String, Object> claims = new HashMap<String, Object>(4);
+            claims.put("name", one.getName());
+            claims.put("password", one.getPassword());
+            claims.put("id", one.getId());
+            claims.put("account", one.getAccount());
             return Result.success(JwtUtil.genJWT(claims));
         }
         return Result.error("登陆失败！账号或者密码输入错误！");
     }
 
+    @BasicWebLog(description = "注册", operationType = AuditRecordOperation.SIGN)
     @PostMapping("/sign")
-    public Result<Boolean> sign(@RequestBody BasicWebUser user){
+    public Result<Boolean> sign(@RequestBody BasicWebUser user) {
         boolean save = service.save(user);
         return Result.success(save);
     }

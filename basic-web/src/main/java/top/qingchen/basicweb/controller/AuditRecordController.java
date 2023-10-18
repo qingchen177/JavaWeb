@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
  * </p>
  *
  * @author qingchen
- * @since 2023-10-17
+ * @since 2023-10-18
  */
 @Controller
 @RequestMapping("/basicweb/auditRecord")

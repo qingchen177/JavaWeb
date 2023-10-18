@@ -1,9 +1,8 @@
 package top.qingchen.basicweb.aop;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import top.qingchen.basicweb.common.constant.myenum.AuditRecordOperation;
+
+import java.lang.annotation.*;
 
 /**
  * @author qingchen
@@ -12,5 +11,9 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
+@Documented
 public @interface BasicWebLog {
+    String description() default "";
+
+    AuditRecordOperation operationType() default AuditRecordOperation.UNKNOWN;
 }

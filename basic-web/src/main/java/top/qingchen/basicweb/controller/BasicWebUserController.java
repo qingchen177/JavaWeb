@@ -2,12 +2,15 @@ package top.qingchen.basicweb.controller;
 
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import top.qingchen.basicweb.aop.BasicWebLog;
+import top.qingchen.basicweb.common.constant.GlobalConstant;
 import top.qingchen.basicweb.common.constant.myenum.AuditRecordOperation;
 import top.qingchen.basicweb.common.pojo.Result;
 import top.qingchen.basicweb.common.util.JwtUtil;
@@ -25,9 +28,19 @@ import java.util.Map;
  * @author qingchen
  * @since 2023-10-12
  */
+
+//@Scope("singleton") --------bean的作用域 singleton ioc容器中同名的只有一个实例
+//@Scope("prototype") 每次使用新建一个实例
+
+@Slf4j
+@Lazy(false)
 @RestController
 @RequestMapping("/user")
 public class BasicWebUserController {
+
+    BasicWebUserController(){
+        log.info(GlobalConstant.LOG_PREFIX+"BasicWebUserController 构造方法执行！！！");
+    }
 
     @Autowired
     private IBasicWebUserService service;

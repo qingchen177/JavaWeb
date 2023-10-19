@@ -9,11 +9,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import top.qingchen.JwtUtil;
+import top.qingchen.QingChenToken;
 import top.qingchen.basicweb.aop.BasicWebLog;
 import top.qingchen.basicweb.common.constant.GlobalConstant;
 import top.qingchen.basicweb.common.constant.myenum.AuditRecordOperation;
 import top.qingchen.basicweb.common.pojo.Result;
-import top.qingchen.basicweb.common.util.JwtUtil;
 import top.qingchen.basicweb.entity.BasicWebUser;
 import top.qingchen.basicweb.service.IBasicWebUserService;
 
@@ -45,11 +46,15 @@ public class BasicWebUserController {
     @Autowired
     private IBasicWebUserService service;
 
+    @Autowired
+    private QingChenToken qingChenToken;
+
     @BasicWebLog(description = "用户登陆", operationType = AuditRecordOperation.LOGIN)
     @PostMapping("/login")
     public Result<String> login(@RequestBody BasicWebUser user) {
         Wrapper<BasicWebUser> wrapper = new LambdaQueryWrapper<BasicWebUser>().eq(BasicWebUser::getName, user.getName()).eq(BasicWebUser::getPassword, user.getPassword());
         BasicWebUser one = service.getOne(wrapper);
+        log.info(GlobalConstant.LOG_PREFIX+ qingChenToken);
         if (one != null) {
             //登录成功返回token
             Map<String, Object> claims = new HashMap<String, Object>(4);

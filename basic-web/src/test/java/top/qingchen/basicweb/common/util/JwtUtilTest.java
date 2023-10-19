@@ -2,6 +2,7 @@ package top.qingchen.basicweb.common.util;
 
 import io.jsonwebtoken.Claims;
 import org.junit.jupiter.api.Test;
+import top.qingchen.JwtUtil;
 
 import java.util.HashMap;
 

@@ -9,9 +9,9 @@ import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import top.qingchen.JwtUtil;
 import top.qingchen.basicweb.common.constant.GlobalConstant;
 import top.qingchen.basicweb.common.constant.myenum.AuditRecordOperation;
-import top.qingchen.basicweb.common.util.JwtUtil;
 import top.qingchen.basicweb.entity.AuditRecord;
 import top.qingchen.basicweb.service.IAuditRecordService;
 

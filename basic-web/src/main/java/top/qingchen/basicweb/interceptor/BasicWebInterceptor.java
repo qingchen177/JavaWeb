@@ -7,9 +7,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
+import top.qingchen.JwtUtil;
 import top.qingchen.basicweb.common.constant.GlobalConstant;
 import top.qingchen.basicweb.common.pojo.Result;
-import top.qingchen.basicweb.common.util.JwtUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

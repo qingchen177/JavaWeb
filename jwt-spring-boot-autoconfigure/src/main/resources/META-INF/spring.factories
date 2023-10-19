@@ -1,0 +1,5 @@
+# Qingchen token
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+top.qingchen.JwtAutoConfiguration
+  
+

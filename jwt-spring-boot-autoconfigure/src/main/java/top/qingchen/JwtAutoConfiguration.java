@@ -1,5 +1,7 @@
 package top.qingchen;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -9,6 +11,8 @@ import org.springframework.context.annotation.Configuration;
  */
 
 @Configuration
+@ConditionalOnMissingBean(TokenService.class)
+@EnableConfigurationProperties(TokenProperties.class)
 public class JwtAutoConfiguration {
 
     @Bean
@@ -17,7 +21,7 @@ public class JwtAutoConfiguration {
     }
 
     @Bean
-    public JwtUtil JwtUtil(){
-        return new JwtUtil();
+    public TokenService tokenService(){
+        return new TokenService();
     }
 }

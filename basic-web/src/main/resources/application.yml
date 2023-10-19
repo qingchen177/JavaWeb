@@ -50,3 +50,9 @@ spring:
     placeholders:
       tablePrefix: qingchen_basic_web
 
+top:
+  qingchen:
+    name: qingchen_token
+    value: 12345678
+
+

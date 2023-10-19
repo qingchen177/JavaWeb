@@ -5,12 +5,10 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import top.qingchen.JwtUtil;
 import top.qingchen.QingChenToken;
+import top.qingchen.TokenService;
 import top.qingchen.basicweb.aop.BasicWebLog;
 import top.qingchen.basicweb.common.constant.GlobalConstant;
 import top.qingchen.basicweb.common.constant.myenum.AuditRecordOperation;
@@ -39,8 +37,8 @@ import java.util.Map;
 @RequestMapping("/user")
 public class BasicWebUserController {
 
-    BasicWebUserController(){
-        log.info(GlobalConstant.LOG_PREFIX+"BasicWebUserController 构造方法执行！！！");
+    BasicWebUserController() {
+        log.info(GlobalConstant.LOG_PREFIX + "BasicWebUserController 构造方法执行！！！");
     }
 
     @Autowired
@@ -49,12 +47,15 @@ public class BasicWebUserController {
     @Autowired
     private QingChenToken qingChenToken;
 
+    @Autowired
+    private TokenService tokenService;
+
     @BasicWebLog(description = "用户登陆", operationType = AuditRecordOperation.LOGIN)
     @PostMapping("/login")
     public Result<String> login(@RequestBody BasicWebUser user) {
         Wrapper<BasicWebUser> wrapper = new LambdaQueryWrapper<BasicWebUser>().eq(BasicWebUser::getName, user.getName()).eq(BasicWebUser::getPassword, user.getPassword());
         BasicWebUser one = service.getOne(wrapper);
-        log.info(GlobalConstant.LOG_PREFIX+ qingChenToken);
+        log.info(GlobalConstant.LOG_PREFIX + qingChenToken);
         if (one != null) {
             //登录成功返回token
             Map<String, Object> claims = new HashMap<String, Object>(4);
@@ -72,6 +73,12 @@ public class BasicWebUserController {
     public Result<Boolean> sign(@RequestBody BasicWebUser user) {
         boolean save = service.save(user);
         return Result.success(save);
+    }
+
+    @GetMapping("/auto/token")
+    public Result<String> token(){
+        String token = tokenService.getToken();
+        return Result.success(token);
     }
 
 }

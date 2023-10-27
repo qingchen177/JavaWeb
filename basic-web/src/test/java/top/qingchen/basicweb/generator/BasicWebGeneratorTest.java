@@ -9,6 +9,6 @@ import java.util.Collections;
 
 public class BasicWebGeneratorTest {
     public static void main(String[] args) {
-        BasicWebGenerator.generate(Collections.singletonList("qingchen_basic_web_audit_record"));
+        BasicWebGenerator.generate(Collections.singletonList("qingchen_basic_web_qrcode_history"));
     }
 }

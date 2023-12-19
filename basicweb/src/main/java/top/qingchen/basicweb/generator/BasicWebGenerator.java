@@ -24,7 +24,7 @@ public class BasicWebGenerator {
                     builder.author("qingchen") // 设置作者
                             .enableSwagger() // 开启 swagger 模式
                             .fileOverride() // 覆盖已生成文件
-                            .outputDir(System.getProperty("user.dir")+"/basic-web/src/main/java"); // 指定输出目录
+                            .outputDir(System.getProperty("user.dir")+"/basicweb/src/main/java"); // 指定输出目录
                 })
                 .dataSourceConfig(builder -> builder.typeConvertHandler((globalConfig, typeRegistry, metaInfo) -> {
                     int typeCode = metaInfo.getJdbcType().TYPE_CODE;
